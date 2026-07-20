@@ -6,6 +6,25 @@
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
+// ==============================================================
+// 0a. GET /profile/{user_id} — Data profil + hasil analisis kulit
+// ==============================================================
+export async function getProfile(userId) {
+  return await apiCall(`${BASE_URL}/profile/${userId}`);
+}
+
+// ==============================================================
+// 0b. GET /skin-profile/{user_id} — Profil kulit saja
+// ==============================================================
+// Response jika sudah analisis:
+//   { status: true, data: { skin_type, skin_problem, analysis_date } }
+// Response jika belum analisis:
+//   { status: false, message: "Belum pernah melakukan analisis kulit." }
+// ==============================================================
+export async function getSkinProfile(userId) {
+  return await apiCall(`${BASE_URL}/skin-profile/${userId}`);
+}
+
 // --------------------------------------------------------------
 // Helper: wrapper fetch dengan penanganan error seragam
 // --------------------------------------------------------------

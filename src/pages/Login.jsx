@@ -35,15 +35,15 @@ const Login = () => {
 
       if (response.ok) {
 
-  localStorage.setItem(
-    "user",
-    JSON.stringify(data.user)
-  );
+  // Simpan object user lengkap (digunakan oleh UI komponen)
+  localStorage.setItem("user", JSON.stringify(data.user));
 
-  localStorage.setItem(
-    "isLogin",
-    "true"
-  );
+  // Simpan key individual (dibutuhkan backend untuk /chat & /profile)
+  localStorage.setItem("user_id",  String(data.user.id));
+  localStorage.setItem("username", data.user.username);
+  localStorage.setItem("email",    data.user.email);
+
+  localStorage.setItem("isLogin", "true");
 
   navigate("/chatbot");
 

@@ -1,30 +1,37 @@
 import { FaLeaf, FaSun, FaTint, FaRegSmile } from "react-icons/fa";
 
+// ==============================================================
+// EmptyState
+// Semua card mengirim "konsultasi" → backend memulai 9 pertanyaan
+// analisis kulit secara otomatis.
+// ==============================================================
+
 const EmptyState = ({ onSuggestionClick }) => {
+
+  const handleCardClick = () => {
+    onSuggestionClick?.("konsultasi");
+  };
+
   const suggestions = [
     {
       icon: <FaLeaf className="text-green-500 text-xl" />,
       title: "Kulit Berjerawat",
-      desc: "Rekomendasikan skincare untuk mengatasi jerawat.",
-      prompt: "Rekomendasikan skincare untuk mengatasi jerawat.",
+      desc: "Analisis kondisi kulitmu dan dapatkan solusi tepat untuk jerawat.",
     },
     {
       icon: <FaTint className="text-blue-500 text-xl" />,
       title: "Kulit Kering",
-      desc: "Produk yang cocok untuk kulit kering dan dehidrasi.",
-      prompt: "Produk apa yang cocok untuk kulit kering dan dehidrasi?",
+      desc: "Temukan rutinitas dan produk terbaik untuk kulitmu yang kering.",
     },
     {
       icon: <FaSun className="text-yellow-500 text-xl" />,
-      title: "Sunscreen",
-      desc: "Sunscreen terbaik sesuai jenis kulit saya.",
-      prompt: "Sunscreen terbaik sesuai jenis kulit saya apa?",
+      title: "Perlindungan Kulit",
+      desc: "Dapatkan rekomendasi sunscreen sesuai jenis dan kondisi kulitmu.",
     },
     {
       icon: <FaRegSmile className="text-pink-500 text-xl" />,
       title: "Rutinitas Skincare",
-      desc: "Buatkan skincare routine pagi dan malam.",
-      prompt: "Buatkan skincare routine pagi dan malam untuk saya.",
+      desc: "Buat skincare routine pagi dan malam yang cocok untuk kulitmu.",
     },
   ];
 
@@ -38,9 +45,9 @@ const EmptyState = ({ onSuggestionClick }) => {
         </h1>
 
         <p className="text-gray-500 leading-7">
-          Halo 👋 Selamat datang di BeautyBrain Chatbot.
-          Saya siap membantu memberikan rekomendasi skincare
-          berdasarkan jenis kulit dan permasalahan kulit yang kamu alami.
+          Ayo mulai analisis kulitmu! 🌿 Ceritakan kondisi kulit kamu
+          sehari-hari dan BeautyBrain akan memberikan rekomendasi skincare
+          yang tepat dan personal untukmu.
         </p>
 
       </div>
@@ -51,7 +58,7 @@ const EmptyState = ({ onSuggestionClick }) => {
         {suggestions.map((item, index) => (
           <button
             key={index}
-            onClick={() => onSuggestionClick?.(item.prompt)}
+            onClick={handleCardClick}
             className="
               bg-white border border-gray-200 rounded-2xl p-5
               hover:shadow-lg hover:border-[#1A237E]/30 hover:bg-[#F5F6FF]
@@ -70,6 +77,11 @@ const EmptyState = ({ onSuggestionClick }) => {
             <p className="text-gray-500 text-sm mt-2">
               {item.desc}
             </p>
+
+            <p className="text-[#1A237E] text-xs font-semibold mt-3 flex items-center gap-1">
+              Mulai Analisis <span>→</span>
+            </p>
+
           </button>
         ))}
 

@@ -288,7 +288,11 @@ const Chatbot = () => {
   // ==========================
 
   const handleSend = async (selectedChoice = null, skipUIAppend = false) => {
-    const question = selectedChoice || input.trim();
+    // Mencegah Event object (misal dari onClick) masuk sebagai selectedChoice
+    const isEvent = selectedChoice && typeof selectedChoice !== "string";
+    const choice = isEvent ? null : selectedChoice;
+    
+    const question = choice || input.trim();
     if (!question) return;
 
     setSidebarOpen(false);
